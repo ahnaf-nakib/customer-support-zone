@@ -1,72 +1,28 @@
-# Getting Started with Create React App
+ 1. What is JSX, and why is it used?
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+JSX (JavaScript XML)** is a syntax extension for JavaScript that lets you write HTML-like code directly within your JavaScript files. It's essentially a shorthand that gets automatically translated into standard JavaScript function calls (like `React.createElement()`). JSX is used because it makes the user interface (UI) code **much easier to read and write**, allowing the structure of the UI to live right next to the logic that handles it, which improves both readability and maintainability.
 
-## Available Scripts
+2. What is the difference between State and Props?
 
-In the project directory, you can run:
+The difference between State and Props defines how data flows in a React application.
+ * **State** is data that is managed, controlled, and can be changed **within** a component itself (it is mutable). You must use a dedicated setter function (like `setTickets`) to update it.
+* **Props** (properties) are data passed **from a parent component** down to a child component. They are considered **immutable** (read-only); a child component cannot directly change the props it receives.
 
-### `npm start`
+3. What is the `useState` hook, and how does it work?
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+The **`useState` hook** is a special function provided by React that allows **functional components to manage State**. It is used for handling data that changes over time, like user input or the number of solved tickets. When you call `useState(initialValue)`, it returns an array containing two items: the **current state value** (the data itself) and a **setter function** (the function used to update the state, like `setResolvedCount`). When you call the setter function, React automatically re-renders the component with the new data.
 
-### `npm test`
+4. How can you share state between components in React?
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+State is shared between components by a technique called **"lifting state up"**. If two or more components (like siblings) need access to the same data, the state must be moved to their closest common parent component. The parent component holds the state and then passes that data down to the child components as **Props**. If a child component needs to change the state, the parent passes the state's **setter function** down to the child via props as well.
 
-### `npm run build`
+5. How is event handling done in React?
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+Event handling in React is similar to standard HTML but uses a few conventions.
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+1.  **CamelCase:** Event names are written in **camelCase** (e.g., `onClick`, `onChange`), unlike the lowercase names in HTML (`onclick`).
+2.  **Function Reference:** Instead of passing a string of code, you pass a **JavaScript function** directly as the handler (e.g., `<button onClick={myFunction}>`).
 
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
-
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
-# b12a7-customer-support-zone-ahnaf-nakib
-# customer-support-zone
+This makes event handling simpler and more integrated into the JavaScript environment.
