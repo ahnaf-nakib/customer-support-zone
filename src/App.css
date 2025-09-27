@@ -1,38 +1,511 @@
-.App {
-  text-align: center;
+/* Import Google Font */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+
+:root {
+  --primary-color: #5d5dff;
+  --secondary-color: #3b3b54;
+  --text-color-light: #f5f5f5;
+  --text-color-dark: #333;
+  --bg-dark: #1e1e2d;
+  --card-bg-dark: #2a2a3e;
+  --border-color: #3b3b54;
+  --success-color: #4CAF50;
+  --warning-color: #FFC107;
+  --high-priority: #ff6347; /* Red/Tomato */
+  --medium-priority: #ff8c00; /* DarkOrange */
+  --low-priority: #4682b4; /* SteelBlue */
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  font-family: 'Poppins', sans-serif;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+body {
+  background-color: var(--bg-dark);
+  color: var(--text-color-light);
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+a {
+  text-decoration: none;
+  color: var(--text-color-light);
+}
+
+button {
+  cursor: pointer;
+  border: none;
+  padding: 8px 16px;
+  border-radius: 4px;
+}
+
+/* --- Navbar Styling --- */
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 15px 50px;
+  background-color: white;
+  border-bottom: 1px solid var(--border-color);
+}
+
+.navbar-logo .logo-text {
+  font-size: 20px;
+  font-weight: 600;
+  
+  color: black;
+}
+
+.navbar-menu {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+.navbar-menu a {
+  font-size: 14px;
+  transition: color 0.3s;
+  color: black;
+  font-style: bold;
+}
+
+.navbar-menu a:hover {
+  color: var(--primary-color);
+}
+
+.new-ticket-btn {
+  background-color: var(--primary-color);
+  color: var(--text-color-light);
+  font-weight: 500;
+  padding: 10px 18px;
+  transition: background-color 0.3s;
+}
+
+.new-ticket-btn:hover {
+  background-color: #4d4dff;
+}
+
+/* --- Banner Styling (UPDATED) --- */
+.banner {
+ 
+  padding: 40px 50px;
+  /* Linear Gradient Background as per Figma */
+  background: linear-gradient(135deg, #1e1e2d 0%, #2a2a3e 100%);
+  border-bottom: 1px solid var(--border-color);
+  /* Added Flexbox to help center content */
   display: flex;
   flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
+  align-items: center; /* Center the title and stats container */
+}
+
+.banner-title {
+  margin-bottom: 30px;
+  font-size: 28px;
+  font-weight: 700;
+  width: 100%; /* Allows the title to be positioned correctly */
+  text-align: left; /* Keep title aligned left within the padding area */
+}
+
+.banner-stats {
+  display: flex;
+  gap: 20px;
+  width: 100%; /* **Make the container take the full width** */
+  max-width: 1200px; /* Optional: Constrain maximum width if needed */
+  justify-content: center; /* **Center the cards within the full width** */
+}
+
+.stat-card {
+  flex: 1; /* **Make both cards take equal, available space** */
+  max-width: 400px; /* Max size for each card to prevent overstretching */
+  padding: 20px;
+  border-radius: 10px;
+  color: var(--text-color-light);
+  text-align: center; /* Center the text inside the card */
+}
+
+.in-progress-card {
+  background: linear-gradient(45deg, #a77dff, #5d5dff);
+  background-image: url ('src/assets/vector1.png'); /* এখানে তোমার design এর ছবি */
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
   color: white;
+  border-radius: 12px;
+  padding: 20px;
 }
 
-.App-link {
-  color: #61dafb;
+.resolved-card {
+  background: linear-gradient(45deg, #66bb6a, #43a047);
+  background-image: url ('src/assets/vector1.png'); /* একই ডিজাইন বা আলাদা দিলে সেটাও দিতে পারো */
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+  color: white;
+  border-radius: 12px;
+  padding: 20px;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
+
+.stat-card p:first-child {
+  font-size: 18px; /* Slightly increased font size */
+  margin-bottom: 5px;
+  font-weight: 500;
+}
+
+.stat-card .count {
+  font-size: 48px; /* Slightly increased count size */
+  font-weight: 700;
+}
+
+/* --- Main Content Layout --- */
+.main-content {
+  display: flex;
+  padding: 40px 50px;
+  gap: 30px;
+}
+
+.customer-tickets {
+  flex: 3; /* Takes up more space on large screens */
+}
+
+.customer-tickets h2 {
+  margin-bottom: 20px;
+  font-size: 24px;
+}
+
+.ticket-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr); /* 2-column grid */
+  gap: 20px;
+}
+
+.task-status-sidebar {
+  flex: 1; /* Takes up less space */
+  min-width: 350px;
+}
+
+/* --- Ticket Card Styling --- */
+.ticket-card {
+  background-color: var(--card-bg-dark);
+  padding: 20px;
+  border-radius: 8px;
+  border: 1px solid var(--border-color);
+  transition: transform 0.2s ease, border-color 0.2s ease;
+  min-height: 180px;
+  display: flex;
+  flex-direction: column;
+}
+
+.ticket-card.clickable:hover {
+  cursor: pointer;
+  border-color: var(--primary-color);
+  transform: translateY(-2px);
+}
+
+.ticket-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+.ticket-title {
+  font-size: 18px;
+  font-weight: 600;
+}
+
+.status-pill {
+  padding: 4px 8px;
+  border-radius: 20px;
+  font-size: 12px;
+  font-weight: 600;
+  text-transform: capitalize;
+}
+
+.status-pill.open {
+  background-color: var(--success-color);
+  color: var(--text-color-dark);
+}
+
+.status-pill.inprogress {
+  background-color: var(--warning-color);
+  color: var(--text-color-dark);
+}
+
+.ticket-description {
+  font-size: 14px;
+  color: #ccc;
+  flex-grow: 1;
+  margin-bottom: 15px;
+}
+
+.ticket-meta {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  font-size: 12px;
+  color: #aaa;
+  gap: 10px;
+  padding-top: 10px;
+  border-top: 1px dashed var(--border-color);
+}
+
+.priority-tag {
+  padding: 2px 6px;
+  border-radius: 4px;
+  font-weight: 500;
+  font-size: 11px;
+}
+
+.priority-tag.high-priority {
+  background-color: var(--high-priority);
+  color: var(--text-color-light);
+}
+
+.priority-tag.medium-priority {
+  background-color: var(--medium-priority);
+  color: var(--text-color-dark);
+}
+
+.priority-tag.low-priority {
+  background-color: var(--low-priority);
+  color: var(--text-color-light);
+}
+
+.ticket-meta .id {
+  font-weight: 600;
+  color: var(--primary-color);
+}
+
+/* --- Task Status Section Styling --- */
+.task-status-section {
+  background-color: var(--card-bg-dark);
+  padding: 20px;
+  border-radius: 8px;
+  position: sticky;
+  top: 20px; /* Keep it visible while scrolling */
+}
+
+.task-status-section h3 {
+  font-size: 20px;
+  margin-bottom: 10px;
+  color: var(--primary-color);
+}
+
+.task-instructions, .no-tasks, .no-resolved {
+  font-size: 14px;
+  color: #aaa;
+  margin-bottom: 15px;
+}
+
+.in-progress-list {
+  min-height: 100px;
+  border: 1px dashed var(--border-color);
+  padding: 10px;
+  margin-bottom: 20px;
+  border-radius: 4px;
+}
+
+.task-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 0;
+  border-bottom: 1px solid var(--border-color);
+}
+
+.task-item:last-child {
+  border-bottom: none;
+}
+
+.task-title {
+  font-size: 14px;
+  font-weight: 500;
+}
+
+.complete-btn {
+  background-color: var(--success-color);
+  color: var(--text-color-dark);
+  font-size: 12px;
+  font-weight: 600;
+}
+
+.resolved-list-placeholder {
+  padding-top: 20px;
+  border-top: 1px solid var(--border-color);
+}
+
+/* --- Footer Styling --- */
+.footer {
+  background-color: var(--card-bg-dark);
+  padding: 50px 50px 20px;
+  border-top: 1px solid var(--border-color);
+}
+
+.footer-content {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 30px;
+  margin-bottom: 30px;
+}
+
+.footer-section {
+  flex: 1;
+  min-width: 200px;
+}
+
+.footer-section h4 {
+  font-size: 16px;
+  margin-bottom: 15px;
+  color: var(--primary-color);
+}
+
+.footer-section.about h4 {
+  font-size: 20px;
+}
+
+.footer-section p {
+  font-size: 14px;
+  color: #aaa;
+  line-height: 1.6;
+}
+
+.footer-section ul {
+  list-style: none;
+}
+
+.footer-section ul li {
+  margin-bottom: 8px;
+}
+
+.footer-section ul li a {
+  font-size: 14px;
+  color: #aaa;
+}
+
+.footer-bottom {
+  text-align: center;
+  padding-top: 20px;
+  border-top: 1px solid var(--border-color);
+  font-size: 14px;
+  color: #aaa;
+}
+
+/* --- Responsiveness (Mobile) --- */
+@media (max-width: 992px) {
+  .main-content {
+    flex-direction: column;
   }
-  to {
-    transform: rotate(360deg);
+  
+  .task-status-sidebar {
+    order: -1; /* Move task status to the top on mobile */
+    min-width: auto;
   }
+  
+  .ticket-grid {
+    grid-template-columns: 1fr; /* Single column on tablets/phones */
+  }
+}
+
+@media (max-width: 768px) {
+  .navbar {
+    padding: 15px 20px;
+  }
+  
+  .navbar-menu {
+    gap: 10px;
+  }
+
+  .navbar-menu a {
+    display: none; /* Hide most links for brevity on small screens */
+  }
+
+  .banner {
+    padding: 20px;
+  }
+
+  .banner-stats {
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .stat-card {
+    width: 100%;
+  }
+
+  .main-content {
+    padding: 20px;
+  }
+  
+  .footer {
+    padding: 30px 20px 15px;
+  }
+
+  .footer-content {
+    flex-direction: column;
+    gap: 20px;
+  }
+}
+
+/* React Toastify Customization for Dark Theme */
+.Toastify__toast {
+  background-color: var(--card-bg-dark) !important;
+  color: var(--text-color-light) !important;
+  border: 1px solid var(--border-color);
+}
+
+.Toastify__progress-bar--success {
+  background-color: var(--primary-color) !important;
+}
+.Toastify__progress-bar--info {
+  background-color: var(--primary-color) !important;
+}
+.Toastify__progress-bar--warning {
+  background-color: var(--warning-color) !important;
+}
+
+/* --- New Styling for Resolved Tasks in Task Status Panel --- */
+
+.resolved-list-container {
+  padding-top: 20px;
+  border-top: 1px solid var(--border-color);
+  margin-top: 10px;
+}
+
+.resolved-list {
+  min-height: 50px;
+  padding: 10px;
+  border: 1px dashed var(--border-color);
+  border-radius: 4px;
+}
+
+.resolved-task-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 8px 0;
+  border-bottom: 1px dotted var(--border-color);
+  color: #a0a0a0; /* Grey text for resolved items */
+}
+
+.resolved-task-item:last-child {
+  border-bottom: none;
+}
+
+.resolved-title {
+  font-size: 13px;
+  font-weight: 400;
+  text-decoration: line-through; /* Strikethrough to indicate completion */
+  flex-grow: 1;
+}
+
+.resolved-status-pill {
+  padding: 2px 6px;
+  border-radius: 4px;
+  font-size: 10px;
+  font-weight: 600;
+  background-color: var(--success-color);
+  color: var(--text-color-dark);
 }
